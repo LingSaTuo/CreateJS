@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/api"
+        android:title="API文档" />
+
+    <item
+        android:id="@+id/run"
+        android:visible="false"
+        android:title="试运行" />
+    <item
+        android:id="@+id/update"
+        android:title="检查更新" />
+    <item android:title="更多..."
+        ><menu>
+    <item
+        android:id="@+id/delete"
+        android:title="移除" />
+        <item
+            android:id="@+id/backups"
+            android:title="备份" />
+    </menu>
+    </item>
+</menu>

@@ -1,0 +1,5 @@
+//胡乱修改可能会造成无法打包
+name : {NAME}
+project : {PROJECT}
+main : {MAIN}
+out : {OUT}

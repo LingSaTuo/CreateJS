@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:padding="24dp"
+    android:layout_height="match_parent">
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView_BallGridPulse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:indicator="BallGridPulse"
+        app:indicator_color="@color/colorAccent"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:id="@+id/message"
+        android:textColor="@color/back"
+        android:layout_width="match_parent"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/llprogress"
+            android:layout_height="wrap_content">
+        <ProgressBar
+            android:layout_width="match_parent"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:id="@+id/pb"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

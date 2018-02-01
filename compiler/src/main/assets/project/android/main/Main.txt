@@ -1,0 +1,13 @@
+{
+"package":"{PACKAGE}",
+"appname":"{APP}",
+"versioncode":{CODE},
+"versionname":"{NAME}",
+"permission":[
+
+                {"":"WRITE_EXTERNAL_STORAGE"},
+                {"":"READ_EXTERNAL_STORAGE"}
+
+
+                ]
+}

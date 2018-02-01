@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:id="@+id/edit_dawer"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:openDrawer="start"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/ed_hs"
+            android:background="#44000000"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/operators"
+                android:layout_height="wrap_content"></LinearLayout>
+        </HorizontalScrollView>
+        <com.kingsatuo.view.JSEditor
+            android:layout_width="match_parent"
+            android:layout_above="@id/ed_hs"
+            android:id="@+id/jseditor"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+<include layout="@layout/edit_activity_drawer"/>
+    </android.support.v4.widget.DrawerLayout>
+</android.support.design.widget.CoordinatorLayout>

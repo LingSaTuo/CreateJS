@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lingsatuo.createjs">
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_CELL_BROADCASTS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.USE_SIP"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="com.android.voicemail.permission.ADD_VOICEMAIL"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.BODY_SENSORS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH"/>
+    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"
+        tools:ignore="ProtectedPermissions"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:name="com.applicationExc.App"
+        android:launchMode="singleInstance"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoadingActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.INSERT_OR_EDIT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file"/>
+                <data android:mimeType="*/*"/>
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.js" />
+                <data android:pathPattern=".*\\.js.*" />
+                <data android:pathPattern=".*\\..*\\.js.*" />
+                <data android:pathPattern=".*\\..*\\..*\\.js.*" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.js.*" />
+                <data android:pathPattern=".*\\.modpkg" />
+                <data android:pathPattern=".*\\.modpkg.*" />
+                <data android:pathPattern=".*\\..*\\.modpkg.*" />
+                <data android:pathPattern=".*\\..*\\..*\\.modpkg.*" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.modpkg.*" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CreativeShop"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ProtocolReader"
+            android:label="@string/activity_1"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            />
+        <activity android:name=".CodeReader"
+            android:label="@string/activity_3"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            >
+        </activity>
+        <activity android:name=".Sharing"
+            android:label="@string/activity_4"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            >
+        </activity>
+        <activity android:name="com.applicationExc.BugActivity"
+            android:label="@string/activity_2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            >
+        </activity>
+
+
+
+
+
+        <activity android:name="com.lingsatuo.CreateRunApplication.RunJS"
+            android:process=":sub"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            />
+
+        <activity android:name="com.lingsatuo.CreateRunApplication.RunModpkg"
+            android:process=":sub"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            />
+        <service android:name="com.lingsatuo.service.CreateJSAccessibilityService"
+            android:process=":sub"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            >
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+        <service android:name="com.lingsatuo.service.Background"
+            android:label="@string/app_name"
+            />
+        <service android:name="com.lingsatuo.service.SubService"
+            android:label="@string/app_name"
+            android:process=":sub"
+            />
+
+        <activity android:name=".ActivityForJs"
+            android:label="@string/activity_4"
+            android:process=":sub"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            >
+        </activity>
+        <provider android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.lingsatuo.createjs.fileprovider"
+            android:grantUriPermissions="true" android:exported="false" >
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

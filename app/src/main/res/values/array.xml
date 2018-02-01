@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources> <string-array name="engine">
+    <item>Rhino</item>
+</string-array>
+    <string-array name="tabitem">
+        <item>@string/s_40</item>
+        <item>@string/s_41</item>
+        <item>@string/s_42</item>
+        <item>@string/s_43</item>
+    </string-array>
+
+
+    <string-array name="mode">
+        <item>@string/s_49</item>
+        <item>@string/s_50</item>
+    </string-array>
+
+
+    <string-array name="item">
+        <item>@string/s_60</item>
+        <item>@string/s_61</item>
+    </string-array>
+    <string-array name="cjs">
+        <item>相声好啊！抨击丑恶，藿香正气。</item>
+        <item>你要舍得死，我就舍得埋。</item>
+        <item>你无耻的样子很有我当年的神韵。 </item>
+
+        <item>听见你父亲去世的消息，街坊邻居哭成一片：“这么好的人啊，死晚了！”</item>
+        <item>你见过哪个黑社会的还纹着蜡笔小新呢？</item>
+        <item>你念完经打和尚。</item>
+
+        <item>原来会说话呀,我还以为是瞎子呢. </item>
+        <item>您体格好啊，一看就知道一准儿活到死</item>
+        <item>老大爷，请您丫文明点！ </item>
+
+        <item>你顶多是男九号的裸替... </item>
+        <item>你进一步是立即枪毙，退一步是保外就医 </item>
+        <item>先生请你自重！我们只卖艺，不卖身！  </item>
+
+        <item>慷慨激昂、催人尿下 </item>
+        <item>我不是说你不要脸，只是不要脸的都是你这样的。</item>
+        <item>你没有猪的气质，有猪的形象。</item>
+
+        <item>你复杂的五官，掩饰不了你朴素的智商。 </item>
+        <item>如果我的人生是一部电影，你就是那弹出来的广告。</item>
+        <item>我去年买了个表 </item>
+
+        <item>我不是看不起你，而是压根懒得理你。</item>
+        <item>你长得让猪活着都充满希望！</item>
+        <item>你的眼睛就像十六的月亮！ </item>
+
+        <item>这个世界上心软就是给狗一个最致命的伤你的机会 </item>
+        <item>你之前我很少见到矫情的人 </item>
+        <item>你不需要装，因为你从来都是呢  </item>
+
+        <item>那天我听说你因为五块钱你哭了 </item>
+        <item>你去过的名胜全部变古迹，你去过的古迹会变成历史，</item>
+        <item>去打仗的话子弹飞弹会忍不住向你飞</item>
+    </string-array>
+</resources>

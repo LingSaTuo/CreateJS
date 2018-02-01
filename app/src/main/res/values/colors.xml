@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#2196f3</color>
+    <color name="colorAccent">#f26400</color>
+    <color name="s">#ffffff</color>
+    <color name="back">#ffffff</color>
+
+    <color name="colorBack">#607d8b</color>
+
+    <color name="colorTheme">#303131</color>
+    <color name="colorError">#d44336</color>
+    <color name="local_ll">#303131</color>
+</resources>

@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/autoscroll"
+        android:orderInCategory="100"
+        android:title="@string/s_36"
+        android:visible="false"
+        android:icon="@android:drawable/ic_menu_upload"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/delete"
+        android:orderInCategory="100"
+        android:title="@string/s_14"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/function_call"
+        android:orderInCategory="100"
+        android:title="@string/s_13"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/libs_message"
+        android:orderInCategory="100"
+        android:title="@string/s_20"
+        app:showAsAction="never" />
+</menu>

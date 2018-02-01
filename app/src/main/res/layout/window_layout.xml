@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:id="@+id/load_by_path"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="26dp"
+                android:src="@mipmap/file"
+                android:layout_height="26dp"
+                android:scaleType="fitXY" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/s_46"
+                android:layout_weight="1"
+                android:textColor="@color/back"
+                android:paddingLeft="26dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:id="@+id/load_by_paste"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="26dp"
+                android:src="@mipmap/paste"
+                android:layout_height="26dp"
+                android:scaleType="fitXY" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/s_47"
+                android:layout_weight="1"
+                android:textColor="@color/back"
+                android:paddingLeft="26dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:id="@+id/load_by_text"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="26dp"
+                android:src="@mipmap/edit"
+                android:layout_height="26dp"
+                android:scaleType="fitXY" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/s_48"
+                android:layout_weight="1"
+                android:textColor="@color/back"
+                android:paddingLeft="26dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:id="@+id/clear"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="26dp"
+                android:src="@mipmap/clear"
+                android:layout_height="26dp"
+                android:scaleType="fitXY" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/s_49"
+                android:layout_weight="1"
+                android:textColor="@color/back"
+                android:paddingLeft="26dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:id="@+id/show_log"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="26dp"
+                android:src="@mipmap/show_log"
+                android:layout_height="26dp"
+                android:scaleType="fitXY" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/s_50"
+                android:layout_weight="1"
+                android:textColor="@color/back"
+                android:paddingLeft="26dp" />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:id="@+id/dismiss_log"
+            android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:padding="10dp">
+        <ImageView
+            android:layout_width="26dp"
+            android:src="@mipmap/dismiss_log"
+            android:layout_height="26dp"
+            android:scaleType="fitXY" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/s_53"
+            android:layout_weight="1"
+            android:textColor="@color/back"
+            android:paddingLeft="26dp" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:id="@+id/exit"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@mipmap/exit"
+                android:layout_height="20dp"
+                android:scaleType="fitXY" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/s_33"
+                android:layout_weight="1"
+                android:textColor="@color/back"
+                android:paddingLeft="26dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
