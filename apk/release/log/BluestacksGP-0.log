@@ -1,0 +1,2 @@
+pid=852 tid=10788 2018-02-05 13:40:04.337 ALARM  logger "-----------------  log4z thread started!   ----------------------------" 
+pid=852 tid=10788 2018-02-05 13:40:04.341 ALARM  logger "logger id=0 key=Main name=BluestacksGP path=./log/ level=1 display=1" 

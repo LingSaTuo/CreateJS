@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lingsatuo.bmob.ObjectData;
-import com.lingsatuo.bmob.UserInfo;
 import com.lingsatuo.createjs.R;
 
 import java.util.List;
@@ -22,10 +21,10 @@ import java.util.List;
  * Created by Administrator on 2017/11/17.
  */
 
-public class PullAdapter extends PullListViewAdapter {
+public class PullAdapter<T extends ObjectData> extends PullListViewAdapter<T> {
     private Context context;
-    private List<UserInfo> objects;
-    public PullAdapter(Context context, List<ObjectData> objects) {
+    private List<T> objects;
+    public PullAdapter(Context context, List<T> objects) {
         super(context, objects);
         this.context = context;
     }

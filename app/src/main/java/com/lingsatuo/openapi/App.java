@@ -11,9 +11,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.view.accessibility.AccessibilityEvent;
 import android.webkit.MimeTypeMap;
 
-import com.lingsatuo.service.CreateJSService;
+import com.lingsatuo.service.CreateJSAccessibilityService;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -132,7 +133,9 @@ public class App {
     }
 
     public CharSequence getCurrentPkgName() {
-        return CreateJSService.getInfo().getPackageName();
+        AccessibilityEvent event =  CreateJSAccessibilityService.accessibilityEvent;
+        CharSequence name = event.getPackageName();
+        return name==null?"null":name;
     }
 
     public String getCurrentPkgName(Context context) {

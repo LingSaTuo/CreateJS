@@ -346,7 +346,11 @@ public class Lexer {
                             tokens.add(new Pair(idx, VOID));
                             break;
                         case LIBS_INTHIS:
-                            tokens.add(new Pair(idx, LIBS_INTHIS));
+                            if (language instanceof LanguageJavascript) {
+                                tokens.add(new Pair(idx, LIBS_INTHIS));
+                            }else{
+                                tokens.add(new Pair(idx, NORMAL));
+                            }
                             break;
                         case WHILE:
                             tokens.add(new Pair(idx, WHILE));
@@ -446,6 +450,9 @@ public class Lexer {
                             tokens.add(new Pair(idx + 1, HTML_VALUE));
                             break;
                         default:
+                            if (ProjectAutoTip.hasKey(cLexer.yytext()))
+                                tokens.add(new Pair(idx,VARNAME));
+                            else
                             tokens.add(new Pair(idx, NORMAL));
                             break;
                     }

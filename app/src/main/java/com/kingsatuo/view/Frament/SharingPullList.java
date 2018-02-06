@@ -34,7 +34,7 @@ import cn.bmob.v3.exception.BmobException;
 public class SharingPullList extends Fragment implements PullToRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
     PullToRefreshLayout mRefreshLayout;
     PullListView mPullListView;
-    PullAdapter adapter;
+    PullAdapter<ObjectData> adapter;
     int mpage = 0;
     Dialog.A da;
     @Nullable
@@ -71,7 +71,7 @@ public class SharingPullList extends Fragment implements PullToRefreshLayout.OnR
             }else{
                 List<ObjectData> objectData = (List<ObjectData>) object;
                 if (adapter==null) {
-                    adapter = new PullAdapter(getActivity(), objectData);
+                    adapter = new PullAdapter<>(getActivity(), objectData);
                     mPullListView.setAdapter(adapter);
                 }else{
                     adapter.updateListView(objectData);

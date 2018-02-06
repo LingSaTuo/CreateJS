@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -84,7 +85,9 @@ public class PopUtils {
                 .setTitle(R.string.s_83)
                 .setView(R.layout.ll)
                 .setPositiveButton(R.string.s_86, null)
-                .setNeutralButton(R.string.s_12, null)
+                .setNeutralButton(R.string.s_12, (dialogInterface, i) -> {
+                    alertDialog.setOnDismissListener(null);
+                })
                 .setNegativeButton(R.string.s_87, null);
         alertDialog = ab.create();
         alertDialog.show();
@@ -113,6 +116,7 @@ public class PopUtils {
         });
         alertDialog.setOnDismissListener(dialogInterface -> {
             String name = editText.getText().toString();
+            if ("".equals(name)||name==null)return;
             String path = file.getPath() + "/" + name;
             project = new FileProject(path);
             if (back != null) {
@@ -124,6 +128,9 @@ public class PopUtils {
     private void js() {
         EditText editText = new EditText(activity);
         editText.setSingleLine(true);
+        CheckBox mc = new CheckBox(activity);
+        mc.setSingleLine(true);
+        mc.setText(activity.getResources().getString(R.string.s_118));
         AlertDialog.Builder ab = new AlertDialog.Builder(activity)
                 .setTitle(R.string.s_83)
                 .setView(R.layout.ll)
@@ -132,6 +139,7 @@ public class PopUtils {
         alertDialog = ab.create();
         alertDialog.show();
         ((LinearLayout) alertDialog.getWindow().findViewById(R.id.ll)).addView(editText);
+        ((LinearLayout) alertDialog.getWindow().findViewById(R.id.ll)).addView(mc);
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         editText.setFocusable(true);
@@ -143,6 +151,15 @@ public class PopUtils {
                 project.setName(name);
                 project.setMainPath("main/" + name + ".js");
                 project.createNewOne(activity.getApplicationContext(), this.back);
+                if (mc.isChecked())
+                    Utils.saveToFile(project._getRootDir()+"/open.js", "Autotip.clear();\n" +
+                            "var tool = com.lingsatuo.script.ScriptTool.getInstance();\ntry{\n" +
+                            "tool.getContext().evaluateString(tool.getScope(),com.lingsatuo.utils.Utils.getAssets(Activity,\"modules/minecraftpe.js\"),\"minecraftpe\",1,null);\n}" +
+                            "catch(e){\nandroid.widget.Toast.makeText(Activity,e.toString()+\"\\n\"+e.stack,1).show()\n}");
+
+                if (this.back != null) {
+                    this.back.T(project, null, "");
+                }
                 alertDialog.dismiss();
             } catch (Exception e) {
                 if (this.back != null) {
@@ -190,6 +207,9 @@ public class PopUtils {
     private void zip() {
         EditText editText = new EditText(activity);
         editText.setSingleLine(true);
+        CheckBox mc = new CheckBox(activity);
+        mc.setSingleLine(true);
+        mc.setText(activity.getResources().getString(R.string.s_118));
         AlertDialog.Builder ab = new AlertDialog.Builder(activity)
                 .setTitle(R.string.s_83)
                 .setView(R.layout.ll)
@@ -198,6 +218,7 @@ public class PopUtils {
         alertDialog = ab.create();
         alertDialog.show();
         ((LinearLayout) alertDialog.getWindow().findViewById(R.id.ll)).addView(editText);
+        ((LinearLayout) alertDialog.getWindow().findViewById(R.id.ll)).addView(mc);
         alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         editText.setFocusable(true);
@@ -211,6 +232,14 @@ public class PopUtils {
                 project.setOutPutPath("build/" + name + ".zip");
                 project._setOutPutPath(project._getRootDir() + "/build/" + name + ".zip");
                 project.createNewOne(activity.getApplicationContext(), this.back);
+                if (mc.isChecked())
+                Utils.saveToFile(project._getRootDir()+"/open.js", "Autotip.clear();\n" +
+                        "var tool = com.lingsatuo.script.ScriptTool.getInstance();\ntry{\n" +
+                        "tool.getContext().evaluateString(tool.getScope(),com.lingsatuo.utils.Utils.getAssets(Activity,\"modules/minecraftpe.js\"),\"minecraftpe\",1,null);\n}" +
+                        "catch(e){\nandroid.widget.Toast.makeText(Activity,e.toString()+\"\\n\"+e.stack,1).show()\n}");
+                if (this.back != null) {
+                    this.back.T(project, null, "");
+                }
                 alertDialog.dismiss();
             } catch (Exception e) {
                 if (this.back != null) {

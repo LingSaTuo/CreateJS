@@ -2,10 +2,8 @@ package com.lingsatuo.adapter;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.lingsatuo.bmob.ObjectData;
-import com.lingsatuo.bmob.UserInfo;
 
 import java.util.List;
 
@@ -13,12 +11,12 @@ import java.util.List;
  * Created by Administrator on 2017/11/17.
  */
 
-public class PullListViewAdapter extends ArrayAdapter<ObjectData> {
+public class PullListViewAdapter<T extends ObjectData> extends ArrayAdapter<T> {
     protected Context mContext;
-    protected List<ObjectData> mDataList;
+    protected List<T> mDataList;
     protected boolean hasNoData;
 
-    public PullListViewAdapter(Context context, List<ObjectData> objects) {
+    public PullListViewAdapter(Context context, List<T> objects) {
         super(context, 0, objects);
         this.mContext = context;
         this.mDataList = objects;
@@ -33,7 +31,7 @@ public class PullListViewAdapter extends ArrayAdapter<ObjectData> {
     }
 
     @Override
-    public ObjectData getItem(int position) {
+    public T getItem(int position) {
         if (hasNoData)
             return null;
         return mDataList.get(position);
@@ -45,7 +43,7 @@ public class PullListViewAdapter extends ArrayAdapter<ObjectData> {
             return 0;
         return 1;
     }
-    public void updateListView(List<ObjectData> dataList) {
+    public void updateListView(List<T> dataList) {
         this.mDataList = dataList;
         hasNoData = (this.mDataList == null || this.mDataList.isEmpty());
         notifyDataSetChanged();

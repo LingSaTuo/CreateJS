@@ -51,10 +51,10 @@
     <string name="s_37">无障碍服务</string>
     <string name="s_38">当前脚本需要启用无障碍服务，请跳转设置开启CreateJS无障碍。</string>
     <string name="s_39">跳转失败，请手动进入设置</string>
-    <string name="s_40">库工坊</string>
+    <string name="s_40">官方库</string>
     <string name="s_41">库管理</string>
     <string name="s_42">例子</string>
-    <string name="s_43">API</string>
+    <string name="s_43">第三方库</string>
     <string name="s_44">压缩中</string>
     <string name="s_45">你需要把CreateJS的允许悬浮其他程序之上的权限开启</string>
     <string name="cannt_open_external_file_x">Can\'t open external file: %s</string>
@@ -132,4 +132,6 @@
     <string name="s_116">应用名称</string>
     <string name="s_117">应用包名</string>
     <string name="e_0">这个世界上无耻的人很多，我把你列在第一位。因为你没有本领，却想着去破解。我告诉你最简单的破解方法，在app_is_cjs.isCjs()方法里返回true即可，我瞧不起你。</string>
+
+    <string name="s_118">作为MC（我的世界mod）</string>
 </resources>

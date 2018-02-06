@@ -24,16 +24,11 @@ import com.applicationExc.App;
 import com.applicationExc.app_is_cjs;
 import com.kingsatuo.Console.Window;
 import com.lingsatuo.adapter.MainPagerAdapter;
-import com.lingsatuo.callbackapi.Function;
 import com.lingsatuo.createjs.Utils.EditUtils.EditUtils;
 import com.lingsatuo.createjs.Utils.SharingUtils.SharingUtils;
 import com.lingsatuo.createjs.Utils.Update;
 import com.lingsatuo.service.SubService;
-import com.lingsatuo.utils.SIUutil;
 import com.lingsatuo.window.MWindowManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by Administrator on 2017/9/27.
@@ -44,37 +39,28 @@ public class CreativeShop extends MAIN implements View.OnClickListener, Navigati
     MWindowManager mWindowManager;
     ImageView iv;
     NavigationView nv;
-    boolean avoid = true,mt = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_main);
         setSupportActionBar(findViewById(R.id.toolbar));
-        MainPagerAdapter mpa = new MainPagerAdapter(getSupportFragmentManager(),this);
+        MainPagerAdapter mpa = new MainPagerAdapter(getSupportFragmentManager(), this);
         ViewPager vp = findViewById(R.id.viewpager);
         vp.setAdapter(mpa);
-        ((TabLayout)findViewById(R.id.maintallayout)).setupWithViewPager(vp);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
-        {
-                getWindow().setFlags(
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        ((TabLayout) findViewById(R.id.maintallayout)).setupWithViewPager(vp);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
         dl = findViewById(R.id.new_main_draw);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,dl,findViewById(R.id.toolbar),
-                R.string.app_name,R.string.app_name);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, dl, findViewById(R.id.toolbar),
+                R.string.app_name, R.string.app_name);
         dl.setDrawerListener(toggle);
-        try {
-            avoid = app_is_cjs.isCjs();
+        if (!app_is_cjs.isCjs())
             dl.addDrawerListener(this);
-            mt = true;
-        } catch (Exception e) {
-            if (!avoid){
-                if (!(e instanceof ClassNotFoundException))
-                dl.addDrawerListener(this);
-            }
-        }
         toggle.syncState();
         nv = findViewById(R.id.main_nv);
         iv = nv.getHeaderView(0).findViewById(R.id.window);
@@ -87,16 +73,16 @@ public class CreativeShop extends MAIN implements View.OnClickListener, Navigati
 
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
-        getMenuInflater().inflate(R.menu.creatework,menu);
+        getMenuInflater().inflate(R.menu.creatework, menu);
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.api:
-                Intent i = new Intent(this,ProtocolReader.class);
-                i.putExtra("path","android_asset/api/Home_Page.html");
+                Intent i = new Intent(this, ProtocolReader.class);
+                i.putExtra("path", "android_asset/api/Home_Page.html");
                 startActivity(i);
                 break;
         }
@@ -105,7 +91,7 @@ public class CreativeShop extends MAIN implements View.OnClickListener, Navigati
 
     @Override
     public void onBackPressed() {
-        if (dl.isDrawerOpen(Gravity.START)){
+        if (dl.isDrawerOpen(Gravity.START)) {
             dl.closeDrawer(Gravity.START);
             return;
         }
@@ -114,12 +100,12 @@ public class CreativeShop extends MAIN implements View.OnClickListener, Navigati
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.window:
-                if (mWindowManager==null||mWindowManager.getLayoutParams()==null){
+                if (mWindowManager == null || mWindowManager.getLayoutParams() == null) {
                     new Window(mWindowManager).setData();
                     iv.setBackgroundResource(R.mipmap.dismiss);
-                }else {
+                } else {
                     if (mWindowManager.isShow()) {
                         mWindowManager.dismiss();
                         iv.setBackgroundResource(R.mipmap.show);
@@ -131,27 +117,28 @@ public class CreativeShop extends MAIN implements View.OnClickListener, Navigati
                 break;
             case R.id.exit:
                 App.exitApp(p -> {
-                    Toast.makeText(CreativeShop.this,p[0],1).show();
+                    Toast.makeText(CreativeShop.this, p[0], 1).show();
                 });
                 break;
             case R.id.update:
-                Snackbar.make(view,R.string.s_104,Snackbar.LENGTH_LONG).show();
-                new Update(this,view);
+                Snackbar.make(view, R.string.s_104, Snackbar.LENGTH_LONG).show();
+                new Update(this, view);
                 break;
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.clear_item:
                 App.exitScript(p -> {
-                Toast.makeText(CreativeShop.this,p[0],1).show(); try {
+                    Toast.makeText(CreativeShop.this, p[0], 1).show();
+                    try {
                         CreativeShop.this.startService(new Intent(CreativeShop.this, SubService.class));
-                    }catch (Exception e){
-                        Toast.makeText(CreativeShop.this,CreativeShop.this.getResources().getString(R.string.na_2),1).show();
+                    } catch (Exception e) {
+                        Toast.makeText(CreativeShop.this, CreativeShop.this.getResources().getString(R.string.na_2), 1).show();
                     }
-            });
+                });
                 break;
             case R.id.sharing_algorithm:
                 new SharingUtils(this).startActivity();
@@ -172,12 +159,8 @@ public class CreativeShop extends MAIN implements View.OnClickListener, Navigati
     public void onDrawerOpened(View drawerView) {
         TextView tv = nv.getHeaderView(0).findViewById(R.id.my_message);
         tv.setVisibility(View.VISIBLE);
-        if (!mt) {
-            tv.setText(app_is_cjs.getMessage(this.getApplicationContext()));
-        }else{
-            tv.setTextSize(10);
-            tv.setText(this.getResources().getString(R.string.e_0));
-        }
+        tv.setTextSize(10);
+        tv.setText(app_is_cjs.getMessage(this.getApplicationContext()));
     }
 
     @Override

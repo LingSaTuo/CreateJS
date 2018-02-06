@@ -4,9 +4,9 @@
 </string-array>
     <string-array name="tabitem">
         <item>@string/s_40</item>
+        <item>@string/s_43</item>
         <item>@string/s_41</item>
         <item>@string/s_42</item>
-        <item>@string/s_43</item>
     </string-array>
 
 

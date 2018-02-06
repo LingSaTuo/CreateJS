@@ -80,7 +80,7 @@ public class NEW_PROJECT implements Back {
                 }
                 runBuild(project);
                 return;
-            }else if(tag.equals("start")){//开始运行
+            }else if(tag.equals("start")){  //开始运行
                 String out = project._getOutPath();
                 if (project instanceof ThemeProject){
                     try {
@@ -96,7 +96,7 @@ public class NEW_PROJECT implements Back {
                     intent.putExtra("path", out);
                     activity.startActivity(intent);
                 }
-            }else {
+            }else if(tag.equals("")) {
                 call(project);
             }
         }
@@ -135,6 +135,29 @@ public class NEW_PROJECT implements Back {
             Lexer.setLanguage(AndroidLanguage.getInstance());
             Lexer.setEnable(true);
             Lexer.clear();
+        }
+        if (!(project instanceof FileProject))
+        runOpen(project);
+    }
+    private void runOpen(Project project){
+        if (!new File(project._getRootDir()+"/open.js").exists())return;
+        List<String> build = new ArrayList<>();
+        build.add(project._getRootDir()+"/open.js");
+        ScriptTool scriptTool = ScriptTool.getInstance().Instance(activity);
+        try {
+            scriptTool.create(null, new RhinoAndroidHelper(activity).enterContext(),build);
+            scriptTool.setOnScriptExcption(e -> new Dialog(activity, getString(R.string.na_4), "Open.js --- Run\n\n"+e.getMessage()+"\n\n"+ Utils.getErr(e), getString(R.string.s_11), null));
+            scriptTool.setObj2JS("Project",project);
+            scriptTool.setObj2JS("Activity",activity);
+            scriptTool.execution();
+            scriptTool.getContext().evaluateString(ScriptTool.getInstance().getScope(),
+                    "const Autotip = com.myopicmobile.textwarrior.common.ProjectAutoTip;" ,
+                    "Open",
+                    1,null);
+            scriptTool.run();
+            Context.exit();
+        } catch (Exception e1) {
+            new Dialog(activity, getString(R.string.na_4), "Open.js --- Build\n\n"+e1.getMessage()+"\n\n"+ Utils.getErr(e1), getString(R.string.s_11), null);
         }
     }
     private void runBuild(Project project){

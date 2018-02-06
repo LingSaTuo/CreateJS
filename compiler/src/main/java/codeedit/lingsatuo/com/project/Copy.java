@@ -91,6 +91,12 @@ public class Copy {
         write(file3,str);
         File file4 = new File(project._getRootDir()+"/.nomedia");
         write(file4,"");
+        File file5 = new File(project._getRootDir()+"/open.js");
+        if (file5.exists()){
+            file5.delete();
+        }
+        file5.createNewFile();
+        write(file5,getAssets("project/js/open.js"));
     }
 
 
@@ -142,6 +148,12 @@ public class Copy {
         write(file3,str);
         File file4 = new File(project._getRootDir()+"/.nomedia");
         write(file4,"");
+        File file5 = new File(project._getRootDir()+"/open.js");
+        if (file5.exists()){
+            file5.delete();
+        }
+        file5.createNewFile();
+        write(file5,getAssets("project/zip/open.js"));
     }
 
 
@@ -196,6 +208,12 @@ public class Copy {
         File file4 = new File(project._getRootDir()+"/.nomedia");
         write(file4,"");
         FileUtils.getInstance(context).copyAssetsToDst(context,"project/android/main",project._getRootDir()+"/main");
+        File file5 = new File(project._getRootDir()+"/open.js");
+        if (file5.exists()){
+            file5.delete();
+        }
+        file5.createNewFile();
+        write(file5,getAssets("project/zip/open.js"));
     }
 
 
@@ -252,6 +270,12 @@ public class Copy {
         write(file3,str);
         File file4 = new File(project._getRootDir()+"/.nomedia");
         write(file4,"");
+        File file5 = new File(project._getRootDir()+"/open.js");
+        if (file5.exists()){
+            file5.delete();
+        }
+        file5.createNewFile();
+        write(file5,getAssets("project/theme/open.js"));
     }
 
 

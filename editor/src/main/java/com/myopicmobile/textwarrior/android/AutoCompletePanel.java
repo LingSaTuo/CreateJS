@@ -23,9 +23,11 @@ import com.myopicmobile.textwarrior.common.Flag;
 import com.myopicmobile.textwarrior.common.Language;
 import com.myopicmobile.textwarrior.common.LanguageNonProg;
 import com.myopicmobile.textwarrior.common.Lexer;
+import com.myopicmobile.textwarrior.common.ProjectAutoTip;
 import com.myopicmobile.textwarrior.language.AndroidLanguage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AutoCompletePanel {
 
@@ -156,9 +158,11 @@ public class AutoCompletePanel {
     }
 
     public void show() {
-        if (!_autoCompletePanel.isShowing())
-            _autoCompletePanel.show();
-        _autoCompletePanel.getListView().setFadingEdgeLength(0);
+        if (ProjectAutoTip.autotip) {
+            if (!_autoCompletePanel.isShowing())
+                _autoCompletePanel.show();
+            _autoCompletePanel.getListView().setFadingEdgeLength(0);
+        }
     }
 
     public void dismiss() {
@@ -243,34 +247,53 @@ public class AutoCompletePanel {
                     // 过滤后利用FilterResults将过滤结果返回
                     ArrayList<AutoCompleteView> buf = new ArrayList<AutoCompleteView>();
                     String keyword = String.valueOf(constraint).toLowerCase();
+                    String keyword2 = String.valueOf(constraint);
                     String[] ss = keyword.split("\\.");
+                    String[] ss2 = keyword2.split("\\.");
                     if (ss.length == 2) {
-                        String pkg = ss[0];
+                        String pkg = ss2[0];
                         keyword = ss[1];
                         if (_globalLanguage.isBasePackage(pkg)) {
                             String[] keywords = _globalLanguage.getBasePackage(pkg);
                             for (String k : keywords) {
                                 if (k.toLowerCase().indexOf(keyword) == 0)
                                     buf.add(new AutoCompleteView(AutoCompleteView.TYPE_KEYWORD, k));
-                                if (Lexer.getLanguage() instanceof AndroidLanguage){
+                                if (Lexer.getLanguage() instanceof AndroidLanguage) {
                                     if (k.equals("NewOne"))
                                         buf.add(new AutoCompleteView(AutoCompleteView.Android, k));
                                 }
                             }
                         }
+                        if (ProjectAutoTip.hasKey(pkg)) {
+                            AutoCompleteView.name = pkg;
+                            List<ProjectAutoTip.Tip> list = ProjectAutoTip.getTips(pkg);
+                            for (ProjectAutoTip.Tip k : list) {
+                                if(k==null)continue;
+                                if (k.name.toLowerCase().indexOf(keyword) == 0)
+                                    buf.add(new AutoCompleteView(AutoCompleteView.TYPE_VAR, k.name));
+                            }
+                        }
                     } else if (ss.length == 1) {
                         if (keyword.length() > 0)
                             if (keyword.charAt(keyword.length() - 1) == '.') {
-                                String pkg = keyword.substring(0, keyword.length() - 1);
+                                String pkg = keyword2.substring(0, keyword.length() - 1);
                                 keyword = "";
                                 if (_globalLanguage.isBasePackage(pkg)) {
                                     String[] keywords = _globalLanguage.getBasePackage(pkg);
                                     for (String k : keywords) {
                                         buf.add(new AutoCompleteView(AutoCompleteView.TYPE_KEYWORD, k));
-                                        if (Lexer.getLanguage() instanceof AndroidLanguage){
+                                        if (Lexer.getLanguage() instanceof AndroidLanguage) {
                                             if (k.equals("NewOne"))
-                                            buf.add(new AutoCompleteView(AutoCompleteView.Android, k));
+                                                buf.add(new AutoCompleteView(AutoCompleteView.Android, k));
                                         }
+                                    }
+                                }
+                                if (ProjectAutoTip.hasKey(pkg)) {
+                                    AutoCompleteView.name = pkg;
+                                    List<ProjectAutoTip.Tip> list = ProjectAutoTip.getTips(pkg);
+                                    for (ProjectAutoTip.Tip k : list) {
+                                        if(k==null)continue;
+                                            buf.add(new AutoCompleteView(AutoCompleteView.JSProject, k.name));
                                     }
                                 }
                             } else {
@@ -305,15 +328,30 @@ public class AutoCompletePanel {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                if (Lexer.getLanguage() instanceof AndroidLanguage) {
-                                    try {
+                                try {
+                                    if (Lexer.getLanguage() instanceof AndroidLanguage) {
                                         for (String one : Lexer.mAndroid) {
                                             if (one.toLowerCase().startsWith(keyword))
                                                 buf.add(new AutoCompleteView(AutoCompleteView.Android, one));
                                         }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
                                     }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    for (String one : ProjectAutoTip.getMaps().keySet()) {
+                                        if (one.toLowerCase().startsWith(keyword))
+                                            buf.add(new AutoCompleteView(AutoCompleteView.TYPE_VAR, one));
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                } try {
+                                    for (String one : ProjectAutoTip.getMmaps().keySet()) {
+                                        if (one.toLowerCase().startsWith(keyword))
+                                            buf.add(new AutoCompleteView(AutoCompleteView.JSVALUE, one));
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
                             }
                     }

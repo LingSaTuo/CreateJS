@@ -44,5 +44,4 @@ public class ObjectData extends UserInfo {
     public void setPath(String path){
         this.path = path;
     }
-
 }

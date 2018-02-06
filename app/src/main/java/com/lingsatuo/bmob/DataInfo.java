@@ -12,13 +12,13 @@ import cn.bmob.v3.listener.UploadFileListener;
  * Created by 15176 on 2017/6/29.
  */
 
-public final class DataInfo  {
-    public A createNewOne(ObjectData objectData){
+public final class DataInfo<T extends ObjectData>  {
+    public A createNewOne(T objectData){
         return new A(objectData);
     }
     public class A{
-        private final ObjectData objectData;
-        public A(ObjectData objectData){
+        private final T objectData;
+        public A(T objectData){
             this.objectData = objectData;
         }
 

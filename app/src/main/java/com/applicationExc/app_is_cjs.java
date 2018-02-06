@@ -1,11 +1,9 @@
 package com.applicationExc;
 
 import android.content.Context;
+import android.util.Base64;
 
 import com.lingsatuo.createjs.R;
-import com.lingsatuo.error.CreateJSMD5NSA;
-import com.lingsatuo.error.CreateJSMD5UEE;
-import com.lingsatuo.utils.md5;
 
 import java.util.Random;
 
@@ -21,8 +19,11 @@ public class app_is_cjs {
     public static String getMy_bmob_id(){
         return my_bmob_id;
     }
-    public static boolean isCjs() throws CreateJSMD5NSA, CreateJSMD5UEE, ClassNotFoundException {
-        Class.forName(md5.CreateMD5(mt));
+    public static boolean isCjs() {
+        try {
+            Class.forName(Base64.encodeToString(mt.getBytes(), Base64.DEFAULT));
+            return false;
+        } catch (ClassNotFoundException e) {}
         if (!my_id_is.equals(App.my_id_is)){
             return false;
         }

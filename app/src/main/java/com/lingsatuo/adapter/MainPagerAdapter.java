@@ -1,18 +1,13 @@
 package com.lingsatuo.adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import com.kingsatuo.view.Frament.ExampleFragment;
 import com.kingsatuo.view.Frament.LocaltionMavenFrament;
 import com.kingsatuo.view.Frament.MavenFrament;
+import com.kingsatuo.view.Frament.UserUpMaven;
 import com.lingsatuo.createjs.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/26.
@@ -27,7 +22,9 @@ public class MainPagerAdapter extends ViewPagerAdapterd {
         MavenFrament mf = new MavenFrament();
         mf.setActivity(context);
         ExampleFragment ef = new ExampleFragment();
+        UserUpMaven user = new UserUpMaven();
         addData(mf);
+        addData(user);
         addData(lm);
         addData(ef);
     }

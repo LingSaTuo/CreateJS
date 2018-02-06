@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lingsatuo.editor.R;
+import com.myopicmobile.textwarrior.common.ProjectAutoTip;
 import com.myopicmobile.textwarrior.language.AndroidLanguage;
 
 import java.lang.reflect.Method;
@@ -20,9 +21,12 @@ public class AutoCompleteView {
     public static final int TYPE_FUNCTION = 2;
     public static final int TYPE_VAR = 3;
     public static final int Android = 4;
+    public static final int JSProject = 5;
+    public static final int JSVALUE = 6;
     public int type;
     public String content;
     public Object data;
+    public static String name;
 
     public AutoCompleteView(int type) {
         this(type, null, null);
@@ -95,7 +99,7 @@ public class AutoCompleteView {
                 layout.setTag(content);
                 return layout;
             }
-            case Android:
+            case Android: {
                 if (content == null) return null;
                 LinearLayout layout = new LinearLayout(cx);
                 final int dp = dip2px(cx, 12);
@@ -115,6 +119,41 @@ public class AutoCompleteView {
                 layout.addView(tv);
                 layout.setTag(getFunction(content));
                 return layout;
+            }
+            case JSProject: {
+                if (content == null) return null;
+                LinearLayout s = new LinearLayout(cx);
+                int dp = dip2px(cx, 15);
+                s.setPadding(dp, dp, dp, dp);
+                TextView t = new TextView(cx);
+                t.setText(content);
+                t.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                t.setTextColor(Color.WHITE);
+                s.addView(t);
+                s.setTag(getTag());
+                return s;
+            }
+            case JSVALUE: {
+                if (content == null) return null;
+                LinearLayout layout = new LinearLayout(cx);
+                final int dp = dip2px(cx, 12);
+                layout.setPadding(dp, dp, dp, dp);
+                final ImageView iv = new ImageView(cx);
+                iv.setImageResource(R.drawable.function);
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dip2px(cx, 24), 0);
+                p.height = p.width;
+                p.rightMargin = dp;
+                iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                layout.setOrientation(LinearLayout.HORIZONTAL);
+                layout.setGravity(Gravity.CENTER_VERTICAL);
+                layout.addView(iv, p);
+                TextView tv = new TextView(cx);
+                tv.setText(content);
+                tv.setTextColor(Color.parseColor("#FF818080"));
+                layout.addView(tv);
+                layout.setTag(getJSvalue(content));
+                return layout;
+            }
         }
         return null;
     }
@@ -165,7 +204,7 @@ public class AutoCompleteView {
                             if (paraName.length() > 1)
                                 back += ("{\n // TUDO......\n    activity.Msuper(\"" + function + "\"," + paraName + ")\n}");
                             else {
-                                back += ("{\n // TUDO......\n    activity.Msuper(\"" + function + "\",null" + ")\n}");
+                                back += ("{\n // TUDO......\n    activity.Msuper(\"" + function + "\"" + ")\n}");
                             }
                         }
                     }
@@ -176,5 +215,17 @@ public class AutoCompleteView {
         }finally {
             return back;
         }
+    }
+    public String getTag(){
+        for (int a = 0 ; a < ProjectAutoTip.getSize(name);a ++) {
+            ProjectAutoTip.Tip tip = ProjectAutoTip.get(name,a);
+            if (content.equals(tip.name)){
+                return tip.value.equals("")?content:tip.value;
+            }
+        }
+        return content;
+    }
+    public String getJSvalue(String key){
+        return ProjectAutoTip.getMmaps().get(key);
     }
 }

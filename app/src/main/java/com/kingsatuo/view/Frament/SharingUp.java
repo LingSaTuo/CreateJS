@@ -57,6 +57,12 @@ public class SharingUp extends Fragment implements View.OnClickListener {
                 new FileSelector(new File(new Files().getSD()), getContext(), object -> {
                     File file = (File) object;
                     textView.setText(file.getPath());
+                }, obj -> {
+                    if (((File)obj).isFile()) {
+                        if (!new Files().getExtension(((File) obj).getName()).equals(".js".toLowerCase()))
+                            return false;
+                    }
+                    return true;
                 });
                 break;
             case R.id.up:
@@ -82,7 +88,7 @@ public class SharingUp extends Fragment implements View.OnClickListener {
                 objectData.setFile(file);
                 objectData.setTitle(t);
                 objectData.setStr(mes);
-                new DataInfo().createNewOne(objectData).upFile(p -> {
+                new DataInfo<>().createNewOne(objectData).upFile(p -> {
                     if (!p[2].equals("")) {
                         Snackbar.make(view, p[2], Snackbar.LENGTH_LONG).show();
                     } else {

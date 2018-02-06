@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.lingsatuo.adapter.FileSelectorAdapter;
 import com.lingsatuo.adapter.utils.FileSelectorUtils;
 import com.lingsatuo.callbackapi.FunctionCallBACK;
+import com.lingsatuo.callbackapi.ToBeContinue;
 import com.lingsatuo.createjs.R;
 import com.lingsatuo.openapi.Files;
 
@@ -24,12 +25,18 @@ public class FileSelector implements AdapterView.OnItemClickListener {
     private AlertDialog.Builder ab;
     private AlertDialog ad;
     private FunctionCallBACK callBACK;
+    private ToBeContinue callBACK1;
     private File mfile;
     private FileSelectorAdapter adapter;
     public FileSelector(File mfile, Context context, FunctionCallBACK callBACK){
+        this(mfile,context,callBACK,null);
+    }
+
+    public FileSelector(File mfile, Context context, FunctionCallBACK callBACK,ToBeContinue callBACK1){
         this.mfile = mfile;
         this.context = context;
         this.callBACK = callBACK;
+        this.callBACK1 = callBACK1;
         show();
     }
     private void show(){
@@ -47,11 +54,8 @@ public class FileSelector implements AdapterView.OnItemClickListener {
             if (mfile==null)mfile=new File(new Files().getSdcardPath());
             mfile = mfile.getParentFile();
             adapter.setData(FileSelectorUtils.getData(mfile,name -> {
-                if (new File(name).isFile()) {
-                    if (!new Files().getExtension(name).equals(".js".toLowerCase()))
-                        return false;
-                }
-                return true;
+                if (callBACK1==null)return true;
+                return callBACK1.T2(new File(name));
             }));
             adapter.notifyDataSetChanged();
         });
@@ -59,11 +63,8 @@ public class FileSelector implements AdapterView.OnItemClickListener {
         listView.setOnItemClickListener(this);
         adapter = new FileSelectorAdapter(context);
         adapter.setData(FileSelectorUtils.getData(mfile, name -> {
-            if (new File(name).isFile()) {
-                if (!new Files().getExtension(name).equals(".js".toLowerCase()))
-                    return false;
-            }
-            return true;
+            if (callBACK1==null)return true;
+            return callBACK1.T2(new File(name));
         }));
         listView.setAdapter(adapter);
     }
@@ -73,11 +74,8 @@ public class FileSelector implements AdapterView.OnItemClickListener {
         File file = (File) adapter.getItem(i);
         if (!file.isFile()){
             adapter.setData(FileSelectorUtils.getData(file,name -> {
-                if (new File(name).isFile()) {
-                    if (!new Files().getExtension(name).equals(".js".toLowerCase()))
-                        return false;
-                }
-                return true;
+                if (callBACK1==null)return true;
+                return callBACK1.T2(new File(name));
             }));
             adapter.notifyDataSetChanged();
             mfile = file;

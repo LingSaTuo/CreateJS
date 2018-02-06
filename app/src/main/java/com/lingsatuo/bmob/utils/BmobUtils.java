@@ -31,7 +31,8 @@ public class BmobUtils {
         query(query,callback);
     }
     private static void query(BmobQuery<ObjectData> query, FunctionCallBACK callBACK){
-        @SuppressLint("HandlerLeak") Handler handler = new Handler(){
+        @SuppressLint("HandlerLeak")
+        Handler handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 callBACK.T(msg.obj);
