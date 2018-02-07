@@ -2,13 +2,9 @@ package com.kingsatuo.Console;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.PixelFormat;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import com.kingsatuo.view.LogView;
 import com.lingsatuo.createjs.R;
@@ -58,7 +54,7 @@ public class Console extends Utils{
     }
 
 
-    private static   Console FPSView;
+    private static Console FPSView;
     private  View setUpView(Context context) {
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.console, null);

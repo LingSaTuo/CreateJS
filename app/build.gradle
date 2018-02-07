@@ -6,8 +6,8 @@ android {
         applicationId "com.lingsatuo.createjs"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 21
-        versionName "18.02.06"
+        versionCode 22
+        versionName "18.02.07"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

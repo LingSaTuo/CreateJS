@@ -118,7 +118,7 @@ public class UserUpMaven extends Fragment implements PullToRefreshLayout.OnRefre
                 .setMessage(getString(R.string.s_26))
                 .canClose(false)
                 .canCloseOut(false).show();
-        String name = Utils.getSD() + "/.CreateJS/download/" + objectData.getTitle() + ".zip";
+        String name = Utils.getSD() + "/.CreateJS/download/" + objectData.getTitle() + "_.zip";
         objectData.setPath(name);
         new Download(getActivity(), objectData.getFile().getUrl(), name, (progress, max, finish, e) -> {
             da.setMax(max);

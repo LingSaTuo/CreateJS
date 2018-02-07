@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.kingsatuo.Console.Console;
 import com.kingsatuo.view.LogView;
 import com.lingsatuo.Dialog.Libs_Message;
 import com.lingsatuo.callbackapi.ScriptLoading;
@@ -27,6 +26,7 @@ import com.lingsatuo.createjs.R;
 import com.lingsatuo.error.CreateJSException;
 import com.lingsatuo.error.CreateJSIOException;
 import com.lingsatuo.openapi.Dialog;
+import com.lingsatuo.script.Maven;
 import com.lingsatuo.script.ScriptTool;
 import com.lingsatuo.service.SubService;
 import com.lingsatuo.utils.SIUutil;
@@ -149,9 +149,6 @@ public class BaseMain extends Main {
         int colorr = Color.BLACK;
         try {
             colorr = Color.parseColor(color);
-            if (Console.getConsole() != null) {
-                Console.getConsole().log(("<" + type + ">" + "  " + message + "\n"), color);
-            }
         } catch (Exception e) {
         } finally {
             sendMessage(type, message, colorr);
@@ -286,7 +283,15 @@ public class BaseMain extends Main {
         setObj2JS("libs_siutils", new SIUutil());
         setObj2JS("libs_zip", new ZipUtils());
         setObj2JS("libs_inthis", inthis);
-        scriptTool.loadMaven();
+        try {
+            Maven.clear();//清理库的TAG对应PATH
+            scriptTool.loadMaven();
+        }catch (JSONException e){
+            sendMessage("库加载时","出错，无法解析库，库清单文件错误   \n"+e.getMessage(),Color.RED);
+            if (da != null)
+            da.dismiss();
+            return;
+        }
         da.setMax(scriptTool.getScriptCount());
         scriptTool.create(paths);
         scriptTool.execution();
@@ -295,6 +300,7 @@ public class BaseMain extends Main {
             if (da != null)
                 da.dismiss();
         });
+        scriptTool.getContext().evaluateString(scriptTool.getScope(),"var CMaven = com.lingsatuo.script.Maven;","Maven",1,null);
         scriptTool.run(new ScriptLoading() {
             @Override
             public void onLoading(int count, String name) {

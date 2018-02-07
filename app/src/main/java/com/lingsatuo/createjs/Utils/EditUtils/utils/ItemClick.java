@@ -98,6 +98,15 @@ public class ItemClick implements AdapterView.OnItemClickListener {
                 jsEditor.setOpenedFile(file.getPath());
                 drawerLayout.closeDrawer(Gravity.START);
             }
+            else if (new Files().getExtension(file.getPath()).equals(".propres".toLowerCase())) {
+                jsEditor.open(file.getPath(),new Edit(jsEditor,activity,file,view));
+                drawerLayout.closeDrawer(Gravity.START);
+                jsEditor.setLanguage(LanguageNonProg.getInstance());
+                Lexer.setEnable(false);
+                Lexer.clear();
+                jsEditor.setOpenedFile(file.getPath());
+                drawerLayout.closeDrawer(Gravity.START);
+            }
             else if (new Files().getExtension(file.getPath()).equals(".ct".toLowerCase())) {
                 new Pop(activity, view, file,null).show(obj -> {
                     String key = (String) obj;

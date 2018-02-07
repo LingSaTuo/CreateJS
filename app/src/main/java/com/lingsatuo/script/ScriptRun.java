@@ -151,6 +151,12 @@ public class ScriptRun extends ScriptCompile {
                 throw new JSONException(e.getMessage() + ".  Maven is empty   (Maven :" + maven + " )");
             }
             try {
+                //获取tag
+                String key  = object.getString("tag");
+                Maven.setPath(key,path);
+            } catch (JSONException e) {
+            }
+            try {
                 JSONArray jsess = object.getJSONArray("info");
                 ScriptTool.getInstance().getMavenMessage().append(maven + "\n----------\n" + "开发者 ：" + jsess.getJSONObject(0).getString("The_creator"));
                 ScriptTool.getInstance().getMavenMessage().append("\n修正者 ：" + jsess.getJSONObject(0).getString("Correction"));

@@ -64,6 +64,7 @@ public class LoadingActivity extends MAIN {
     static DataD dd;
 
     static String path = "";
+    static String last_name="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,31 +178,34 @@ public class LoadingActivity extends MAIN {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 lib = libs.get(i);
-                new CheckLibsVersion(LoadingActivity.this, lib, new OnUpdateListener() {
-                    @Override
-                    public void onUpdate(int code, String message, String uri) {
-                        new AlertDialog.Builder(LoadingActivity.this)
-                                .setTitle("可更新的库  " + lib)
-                                .setMessage(message)
-                                .setPositiveButton("下载", (dialogInterface, i1) -> {
-                                    showloading();
-                                    Handler handler = new DownloadHandler(LoadingActivity.this);
-                                    List<String> name = new ArrayList<>();
-                                    List<String> uril = new ArrayList<>();
-                                    name.add(lib + ".zip");
-                                    uril.add(uri);
-                                    download(uril, name, handler, true);
-                                })
-                                .setNegativeButton("取消", null).show();
-                    }
-
-                    @Override
-                    public void UnUpdate(int code) {
-                        if (code == -1) {
-                            new Libs_Message(LoadingActivity.this, new StringBuilder("当前库版本为不可用版本" + lib + "，请前往CreateJS主页面重新下载"));
+                if (!last_name.equals(lib)) {
+                    new CheckLibsVersion(LoadingActivity.this, lib, new OnUpdateListener() {
+                        @Override
+                        public void onUpdate(int code, String message, String uri) {
+                            new AlertDialog.Builder(LoadingActivity.this)
+                                    .setTitle("可更新的库  " + lib)
+                                    .setMessage(message)
+                                    .setPositiveButton("下载", (dialogInterface, i1) -> {
+                                        showloading();
+                                        Handler handler = new DownloadHandler(LoadingActivity.this);
+                                        List<String> name = new ArrayList<>();
+                                        List<String> uril = new ArrayList<>();
+                                        name.add(lib + ".zip");
+                                        uril.add(uri);
+                                        download(uril, name, handler, true);
+                                    })
+                                    .setNegativeButton("取消", null).show();
                         }
-                    }
-                });
+
+                        @Override
+                        public void UnUpdate(int code) {
+                            if (code == -1) {
+                                new Libs_Message(LoadingActivity.this, new StringBuilder("当前库版本为不可用版本" + lib + "，请前往CreateJS主页面重新下载"));
+                            }
+                        }
+                    });
+                }
+                last_name = lib;
             }
 
             @Override

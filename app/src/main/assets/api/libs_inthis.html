@@ -311,9 +311,19 @@ libs_inthis.setartActivity(intent1)
 <h4>libs.inthis.sendMessage(type1String,message1String,color1String)</h4>
 <blockquote>
 <p>在Log台打印消息 颜色为color1String
-如：libs.sendMessage(&quot;错误&quot;,&quot;测试&quot;,&quot;#ff0000&quot;)</p>
+如：libs.sendMessage(&quot;错误&quot;,&quot;测试&quot;,&quot;#000000&quot;)</p>
 </blockquote>
-<p><code>&lt;错误&gt; 测试</code>_inthis</p>
+<p><code>&lt;错误&gt; 测试</code></p>
+
+<h4>libs.inthis.getLogView()</h4>
+<blockquote>
+    <p>获取Log台的View</p>
+</blockquote>
+<p><code>var view = libs_inthis.getLogView()</code>
+    <blockquote>
+<p>view.write(new String(string))把string追加进log</p>
+</blockquote></p>
+
 
 </body>
 </html>

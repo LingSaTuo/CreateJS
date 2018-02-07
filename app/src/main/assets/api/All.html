@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MarkdownPad Document</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style type="text/css">
+    <title>MarkdownPad Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
 /* Author: Nicolas Hery - http://nicolashery.com */
 /* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
@@ -288,17 +288,19 @@ table tr:nth-child(2n) {
 img {
   max-width: 100%
 }
-</style>
+
+    </style>
 </head>
 <body>
 <h2>CJS库的机制</h2>
 <h3>&gt;&gt;总章</h3>
 <blockquote>
-<p>不要使用 <code>const</code> 关键词定义过于普遍的全局变量或常量 ，当冲突时会抛出异常 <code>TypeError:redeclaration of const xxx</code></p>
+    <p>不要使用 <code>const</code> 关键词定义过于普遍的全局变量或常量 ，当冲突时会抛出异常 <code>TypeError:redeclaration of const
+        xxx</code></p>
 </blockquote>
 <h3>&gt;&gt;库的结构</h3>
 <blockquote>
-<p>文件夹结构类似下方</p>
+    <p>文件夹结构类似下方</p>
 </blockquote>
 <pre><code>/库名字
 /库名字/libs.propres(务必包含)
@@ -309,7 +311,7 @@ img {
 </code></pre>
 
 <blockquote>
-<p>如 ：</p>
+    <p>如 ：</p>
 </blockquote>
 <pre><code>Common
 Common/Debug.js
@@ -319,12 +321,14 @@ Common/libs.propres
 
 <h4>libs.propres文件</h4>
 <blockquote>
-<p>该文件在库的根目录下，如果不在根目录下CJS将不识别该库，<code>libs.propres</code> 遵循json格式 ，用法样例如下</p>
+    <p>该文件在库的根目录下，如果不在根目录下CJS将不识别该库，<code>libs.propres</code> 遵循json格式 ，用法样例如下</p>
 </blockquote>
 <pre><code>{
      //必选 （库内文件列表，排序决定加载顺序）
     &quot;include&quot;:[{&quot;name&quot;:&quot;Debug.js&quot;},
                     {&quot;name&quot;:&quot;A/文件.js&quot;}],
+    //可选 （为库设置一个标签，可用于获取路径，如果标签与父库相同或不添加tag标签，则视为使用父库的标签）
+    &quot;tag&quot;&quot;标签&quot;:,
 //可选 （依赖库）当该库正常工作需要依赖其他库时，就需要添加此键值对
     &quot;libs&quot;:[{&quot;name&quot;:&quot;A&quot;,&quot;uri&quot;:&quot;当你知道A库的下载直链，需要填入直链&quot;},
                 {&quot;name&quot;:&quot;B&quot;,&quot;uri&quot;:&quot;true 库在本地时，填入true即可，无论是在js_libs下还是user_libs下&quot;}]，
@@ -339,7 +343,7 @@ Common/libs.propres
 
 <h5>校验文件</h5>
 <blockquote>
-<p>校验文件遵循json格式，当versioncode大于本地code时，会提示更新</p>
+    <p>校验文件遵循json格式，当versioncode大于本地code时，会提示更新</p>
 </blockquote>
 <pre><code>{
 &quot;versioncode&quot;:2,
@@ -350,11 +354,13 @@ Common/libs.propres
 
 <h3>&gt;&gt;库机制</h3>
 <blockquote>
-<p>CJS会优先读取<code>libs.propres</code>文件，从中获取目标库所要加载的文件，以及目标库的信息，依赖，版本等属性</p>
+    <p>CJS会优先读取<code>libs.propres</code>文件，从中获取目标库所要加载的文件，以及目标库的信息，依赖，版本等属性</p>
 </blockquote>
 <h4>函数调用（可选但推荐）</h4>
 <blockquote>
-<p>该函数，推荐但不强制，CJS调用函数和调试功能是基于Common库（DeBUG库），该库在CJS库工坊下载，你也可以内置函数调用函数，但函数名必须为<code>_function</code> </p>
+    <p>
+        该函数，推荐但不强制，CJS调用函数和调试功能是基于Common库（DeBUG库），该库在CJS库工坊下载，你也可以内置函数调用函数，但函数名必须为<code>_function</code>
+    </p>
 </blockquote>
 <pre><code>function _function(str){
 //TODO
@@ -362,15 +368,15 @@ Common/libs.propres
 </code></pre>
 
 <blockquote>
-<p>其中参数为 函数名!&quot;参数1&quot;,&quot;参数2&quot;,&quot;参数3&quot;，例如：
-调用了
-<code>function a(str){}</code> 
-_function参数会是<code>&quot;a&quot;!&quot;&quot;</code></p>
+    <p>其中参数为 函数名!&quot;参数1&quot;,&quot;参数2&quot;,&quot;参数3&quot;，例如：
+        调用了
+        <code>function a(str){}</code>
+        _function参数会是<code>&quot;a&quot;!&quot;&quot;</code></p>
 </blockquote>
 <h4>载入完成回掉</h4>
 <blockquote>
-<p>该函数为可选，不强制
-函数名必须为loadingfinish</p>
+    <p>该函数为可选，不强制
+        函数名必须为loadingfinish</p>
 </blockquote>
 <pre><code>function loadingfinish(str){
 
@@ -378,7 +384,7 @@ _function参数会是<code>&quot;a&quot;!&quot;&quot;</code></p>
 </code></pre>
 
 <blockquote>
-<p>传入的参数为加载的库名称数组  如 :<code>[&quot;Common&quot;]</code></p>
+    <p>传入的参数为加载的库名称数组 如 :<code>[&quot;Common&quot;]</code></p>
 </blockquote>
 
 </body>
